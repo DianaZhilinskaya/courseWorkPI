@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Curator>
+@using couse.Models;
+@using couse;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<br />
+
+@using (Html.BeginForm("Index", "Account"))
+{
+
+
+    foreach(Curator cur in Model)//.number_of_group)
+    {
+<div>
+    <label> @cur.curator </label>@*@comp.number_of_group*@
+    <select>
+        @foreach (var gr in cur.groups)
+        {
+            <option>@gr</option>
+        }
+    </select> 
+</div>
+    }
+ 
+<input type="submit" value="Save"/>
+}

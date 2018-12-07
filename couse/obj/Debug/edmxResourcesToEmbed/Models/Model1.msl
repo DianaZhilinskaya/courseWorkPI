@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище StudentsModelContainer" CdmEntityContainer="StudentsEntities2">
+    <EntitySetMapping Name="Autorization">
+      <EntityTypeMapping TypeName="StudentsModel.Autorization">
+        <MappingFragment StoreEntitySet="Autorization">
+          <ScalarProperty Name="login_user" ColumnName="login_user" />
+          <ScalarProperty Name="password_user" ColumnName="password_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Count_of_students">
+      <EntityTypeMapping TypeName="StudentsModel.Count_of_students">
+        <MappingFragment StoreEntitySet="Count_of_students">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="from_Minsk" ColumnName="from_Minsk" />
+          <ScalarProperty Name="from_the_countryside" ColumnName="from_the_countryside" />
+          <ScalarProperty Name="from_other_regions" ColumnName="from_other_regions" />
+          <ScalarProperty Name="from_CIS_countries" ColumnName="from_CIS_countries" />
+          <ScalarProperty Name="from_other_countries" ColumnName="from_other_countries" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curators">
+      <EntityTypeMapping TypeName="StudentsModel.Curators">
+        <MappingFragment StoreEntitySet="Curators">
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="number_of_group" ColumnName="number_of_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Form_of_education">
+      <EntityTypeMapping TypeName="StudentsModel.Form_of_education">
+        <MappingFragment StoreEntitySet="Form_of_education">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group_students">
+      <EntityTypeMapping TypeName="StudentsModel.Group_students">
+        <MappingFragment StoreEntitySet="Group_students">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="number_of_group" ColumnName="number_of_group" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+          <ScalarProperty Name="year_of_create" ColumnName="year_of_create" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Information_about_student_families">
+      <EntityTypeMapping TypeName="StudentsModel.Information_about_student_families">
+        <MappingFragment StoreEntitySet="Information_about_student_families">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="single_parent_students" ColumnName="single_parent_students" />
+          <ScalarProperty Name="students_from_large_families" ColumnName="students_from_large_families" />
+          <ScalarProperty Name="students_with_disabled_parents_1_2_groups" ColumnName="students_with_disabled_parents_1_2_groups" />
+          <ScalarProperty Name="affected_by_the_Chernobyl_accident" ColumnName="affected_by_the_Chernobyl_accident" />
+          <ScalarProperty Name="disaster_victims" ColumnName="disaster_victims" />
+          <ScalarProperty Name="refugee_families" ColumnName="refugee_families" />
+          <ScalarProperty Name="parents_died_during_passage_of_military_or_police_services" ColumnName="parents_died_during_passage_of_military_or_police_services" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Needing_social_protection">
+      <EntityTypeMapping TypeName="StudentsModel.Needing_social_protection">
+        <MappingFragment StoreEntitySet="Needing_social_protection">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="orphan_students" ColumnName="orphan_students" />
+          <ScalarProperty Name="lost_the_last_of_the_parents_in_the_period_of_study" ColumnName="lost_the_last_of_the_parents_in_the_period_of_study" />
+          <ScalarProperty Name="in_custody" ColumnName="in_custody" />
+          <ScalarProperty Name="disabled_students" ColumnName="disabled_students" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orphan_students">
+      <EntityTypeMapping TypeName="StudentsModel.Orphan_students">
+        <MappingFragment StoreEntitySet="Orphan_students">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="at_full_state_providing" ColumnName="at_full_state_providing" />
+          <ScalarProperty Name="have_a_guardian" ColumnName="have_a_guardian" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Place_of_residence">
+      <EntityTypeMapping TypeName="StudentsModel.Place_of_residence">
+        <MappingFragment StoreEntitySet="Place_of_residence">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="in_dorm" ColumnName="in_dorm" />
+          <ScalarProperty Name="in_a_private_apartment" ColumnName="in_a_private_apartment" />
+          <ScalarProperty Name="houses" ColumnName="houses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="StudentsModel.Students">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="students_id" ColumnName="students_id" />
+          <ScalarProperty Name="count_of_students" ColumnName="count_of_students" />
+          <ScalarProperty Name="place_of_residence" ColumnName="place_of_residence" />
+          <ScalarProperty Name="needing_social_protection" ColumnName="needing_social_protection" />
+          <ScalarProperty Name="underage_students" ColumnName="underage_students" />
+          <ScalarProperty Name="information_about_student_families" ColumnName="information_about_student_families" />
+          <ScalarProperty Name="internal_control_students" ColumnName="internal_control_students" />
+          <ScalarProperty Name="underperforming_students" ColumnName="underperforming_students" />
+          <ScalarProperty Name="family_students" ColumnName="family_students" />
+          <ScalarProperty Name="students_with_children" ColumnName="students_with_children" />
+          <ScalarProperty Name="with_severe_chronic_diseases" ColumnName="with_severe_chronic_diseases" />
+          <ScalarProperty Name="form_of_education" ColumnName="form_of_education" />
+          <ScalarProperty Name="student_activists" ColumnName="student_activists" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students_id">
+      <EntityTypeMapping TypeName="StudentsModel.Students_id">
+        <MappingFragment StoreEntitySet="Students_id">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="group_students" ColumnName="group_students" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="StudentsModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

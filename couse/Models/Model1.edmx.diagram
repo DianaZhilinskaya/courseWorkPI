@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="095ad04bbafb4f61a9803aa83aaea092" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentsModel.Autorization" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Count_of_students" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Curators" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Form_of_education" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Group_students" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Information_about_student_families" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Needing_social_protection" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Orphan_students" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Place_of_residence" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Students" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.Students_id" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="StudentsModel.FK__Students__count___18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students__form_o__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students___group__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students__inform__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Needing_s__orpha__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students__needin__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students__place___19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsModel.FK__Students__studen__1CBC4616" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

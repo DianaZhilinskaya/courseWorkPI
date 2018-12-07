@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище StudentsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autorization">
+          <Key>
+            <PropertyRef Name="login_user" />
+            <PropertyRef Name="password_user" />
+          </Key>
+          <Property Name="login_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password_user" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Count_of_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" />
+          <Property Name="from_Minsk" Type="bit" />
+          <Property Name="from_the_countryside" Type="bit" />
+          <Property Name="from_other_regions" Type="bit" />
+          <Property Name="from_CIS_countries" Type="bit" />
+          <Property Name="from_other_countries" Type="bit" />
+        </EntityType>
+        <EntityType Name="Curators">
+          <Key>
+            <PropertyRef Name="FIO" />
+          </Key>
+          <Property Name="FIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="number_of_group" Type="int" />
+        </EntityType>
+        <EntityType Name="Form_of_education">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="budget" Type="bit" />
+          <Property Name="paid" Type="bit" />
+        </EntityType>
+        <EntityType Name="Group_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="number_of_group" Type="int" />
+          <Property Name="faculty" Type="varchar" MaxLength="10" />
+          <Property Name="year_of_create" Type="int" />
+        </EntityType>
+        <EntityType Name="Information_about_student_families">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="single_parent_students" Type="bit" />
+          <Property Name="students_from_large_families" Type="bit" />
+          <Property Name="students_with_disabled_parents_1_2_groups" Type="bit" />
+          <Property Name="affected_by_the_Chernobyl_accident" Type="bit" />
+          <Property Name="disaster_victims" Type="bit" />
+          <Property Name="refugee_families" Type="bit" />
+          <Property Name="parents_died_during_passage_of_military_or_police_services" Type="bit" />
+        </EntityType>
+        <EntityType Name="Needing_social_protection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="orphan_students" Type="int" />
+          <Property Name="lost_the_last_of_the_parents_in_the_period_of_study" Type="bit" />
+          <Property Name="in_custody" Type="bit" />
+          <Property Name="disabled_students" Type="bit" />
+        </EntityType>
+        <EntityType Name="Orphan_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="at_full_state_providing" Type="bit" />
+          <Property Name="have_a_guardian" Type="bit" />
+        </EntityType>
+        <EntityType Name="Place_of_residence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="in_dorm" Type="bit" />
+          <Property Name="in_a_private_apartment" Type="bit" />
+          <Property Name="houses" Type="bit" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="students_id" />
+          </Key>
+          <Property Name="students_id" Type="int" Nullable="false" />
+          <Property Name="count_of_students" Type="int" />
+          <Property Name="place_of_residence" Type="int" />
+          <Property Name="needing_social_protection" Type="int" />
+          <Property Name="underage_students" Type="int" />
+          <Property Name="information_about_student_families" Type="int" />
+          <Property Name="internal_control_students" Type="bit" />
+          <Property Name="underperforming_students" Type="bit" />
+          <Property Name="family_students" Type="bit" />
+          <Property Name="students_with_children" Type="bit" />
+          <Property Name="with_severe_chronic_diseases" Type="bit" />
+          <Property Name="form_of_education" Type="int" />
+          <Property Name="student_activists" Type="bit" />
+        </EntityType>
+        <EntityType Name="Students_id">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FIO" Type="varchar" MaxLength="50" />
+          <Property Name="group_students" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Needing_s__orpha__4AB81AF0">
+          <End Role="Orphan_students" Type="Self.Orphan_students" Multiplicity="0..1" />
+          <End Role="Needing_social_protection" Type="Self.Needing_social_protection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orphan_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Needing_social_protection">
+              <PropertyRef Name="orphan_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students___group__151B244E">
+          <End Role="Group_students" Type="Self.Group_students" Multiplicity="0..1" />
+          <End Role="Students_id" Type="Self.Students_id" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students_id">
+              <PropertyRef Name="group_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__count___18EBB532">
+          <End Role="Count_of_students" Type="Self.Count_of_students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Count_of_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="count_of_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__form_o__1BC821DD">
+          <End Role="Form_of_education" Type="Self.Form_of_education" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form_of_education">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="form_of_education" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__inform__1DB06A4F">
+          <End Role="Information_about_student_families" Type="Self.Information_about_student_families" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information_about_student_families">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="information_about_student_families" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__needin__1AD3FDA4">
+          <End Role="Needing_social_protection" Type="Self.Needing_social_protection" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Needing_social_protection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="needing_social_protection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__place___19DFD96B">
+          <End Role="Place_of_residence" Type="Self.Place_of_residence" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place_of_residence">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="place_of_residence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__studen__1CBC4616">
+          <End Role="Students_id" Type="Self.Students_id" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Students_id">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="students_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище StudentsModelContainer">
+          <EntitySet Name="Autorization" EntityType="Self.Autorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Count_of_students" EntityType="Self.Count_of_students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curators" EntityType="Self.Curators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Form_of_education" EntityType="Self.Form_of_education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_students" EntityType="Self.Group_students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Information_about_student_families" EntityType="Self.Information_about_student_families" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Needing_social_protection" EntityType="Self.Needing_social_protection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orphan_students" EntityType="Self.Orphan_students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Place_of_residence" EntityType="Self.Place_of_residence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students_id" EntityType="Self.Students_id" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Needing_s__orpha__4AB81AF0" Association="Self.FK__Needing_s__orpha__4AB81AF0">
+            <End Role="Orphan_students" EntitySet="Orphan_students" />
+            <End Role="Needing_social_protection" EntitySet="Needing_social_protection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students___group__151B244E" Association="Self.FK__Students___group__151B244E">
+            <End Role="Group_students" EntitySet="Group_students" />
+            <End Role="Students_id" EntitySet="Students_id" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__count___18EBB532" Association="Self.FK__Students__count___18EBB532">
+            <End Role="Count_of_students" EntitySet="Count_of_students" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__form_o__1BC821DD" Association="Self.FK__Students__form_o__1BC821DD">
+            <End Role="Form_of_education" EntitySet="Form_of_education" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__inform__1DB06A4F" Association="Self.FK__Students__inform__1DB06A4F">
+            <End Role="Information_about_student_families" EntitySet="Information_about_student_families" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__needin__1AD3FDA4" Association="Self.FK__Students__needin__1AD3FDA4">
+            <End Role="Needing_social_protection" EntitySet="Needing_social_protection" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__place___19DFD96B" Association="Self.FK__Students__place___19DFD96B">
+            <End Role="Place_of_residence" EntitySet="Place_of_residence" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__studen__1CBC4616" Association="Self.FK__Students__studen__1CBC4616">
+            <End Role="Students_id" EntitySet="Students_id" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autorization">
+          <Key>
+            <PropertyRef Name="login_user" />
+            <PropertyRef Name="password_user" />
+          </Key>
+          <Property Name="login_user" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_user" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Count_of_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="from_Minsk" Type="Boolean" />
+          <Property Name="from_the_countryside" Type="Boolean" />
+          <Property Name="from_other_regions" Type="Boolean" />
+          <Property Name="from_CIS_countries" Type="Boolean" />
+          <Property Name="from_other_countries" Type="Boolean" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__count___18EBB532" FromRole="Count_of_students" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Curators">
+          <Key>
+            <PropertyRef Name="FIO" />
+          </Key>
+          <Property Name="FIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number_of_group" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Form_of_education">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="budget" Type="Boolean" />
+          <Property Name="paid" Type="Boolean" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__form_o__1BC821DD" FromRole="Form_of_education" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Group_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="number_of_group" Type="Int32" />
+          <Property Name="faculty" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="year_of_create" Type="Int32" />
+          <NavigationProperty Name="Students_id" Relationship="Self.FK__Students___group__151B244E" FromRole="Group_students" ToRole="Students_id" />
+        </EntityType>
+        <EntityType Name="Information_about_student_families">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="single_parent_students" Type="Boolean" />
+          <Property Name="students_from_large_families" Type="Boolean" />
+          <Property Name="students_with_disabled_parents_1_2_groups" Type="Boolean" />
+          <Property Name="affected_by_the_Chernobyl_accident" Type="Boolean" />
+          <Property Name="disaster_victims" Type="Boolean" />
+          <Property Name="refugee_families" Type="Boolean" />
+          <Property Name="parents_died_during_passage_of_military_or_police_services" Type="Boolean" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__inform__1DB06A4F" FromRole="Information_about_student_families" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Needing_social_protection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="orphan_students" Type="Int32" />
+          <Property Name="lost_the_last_of_the_parents_in_the_period_of_study" Type="Boolean" />
+          <Property Name="in_custody" Type="Boolean" />
+          <Property Name="disabled_students" Type="Boolean" />
+          <NavigationProperty Name="Orphan_students1" Relationship="Self.FK__Needing_s__orpha__4AB81AF0" FromRole="Needing_social_protection" ToRole="Orphan_students" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__needin__1AD3FDA4" FromRole="Needing_social_protection" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Orphan_students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="at_full_state_providing" Type="Boolean" />
+          <Property Name="have_a_guardian" Type="Boolean" />
+          <NavigationProperty Name="Needing_social_protection" Relationship="Self.FK__Needing_s__orpha__4AB81AF0" FromRole="Orphan_students" ToRole="Needing_social_protection" />
+        </EntityType>
+        <EntityType Name="Place_of_residence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="in_dorm" Type="Boolean" />
+          <Property Name="in_a_private_apartment" Type="Boolean" />
+          <Property Name="houses" Type="Boolean" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__place___19DFD96B" FromRole="Place_of_residence" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="students_id" />
+          </Key>
+          <Property Name="students_id" Type="Int32" Nullable="false" />
+          <Property Name="count_of_students" Type="Int32" />
+          <Property Name="place_of_residence" Type="Int32" />
+          <Property Name="needing_social_protection" Type="Int32" />
+          <Property Name="underage_students" Type="Int32" />
+          <Property Name="information_about_student_families" Type="Int32" />
+          <Property Name="internal_control_students" Type="Boolean" />
+          <Property Name="underperforming_students" Type="Boolean" />
+          <Property Name="family_students" Type="Boolean" />
+          <Property Name="students_with_children" Type="Boolean" />
+          <Property Name="with_severe_chronic_diseases" Type="Boolean" />
+          <Property Name="form_of_education" Type="Int32" />
+          <Property Name="student_activists" Type="Boolean" />
+          <NavigationProperty Name="Count_of_students1" Relationship="Self.FK__Students__count___18EBB532" FromRole="Students" ToRole="Count_of_students" />
+          <NavigationProperty Name="Form_of_education1" Relationship="Self.FK__Students__form_o__1BC821DD" FromRole="Students" ToRole="Form_of_education" />
+          <NavigationProperty Name="Information_about_student_families1" Relationship="Self.FK__Students__inform__1DB06A4F" FromRole="Students" ToRole="Information_about_student_families" />
+          <NavigationProperty Name="Needing_social_protection1" Relationship="Self.FK__Students__needin__1AD3FDA4" FromRole="Students" ToRole="Needing_social_protection" />
+          <NavigationProperty Name="Place_of_residence1" Relationship="Self.FK__Students__place___19DFD96B" FromRole="Students" ToRole="Place_of_residence" />
+          <NavigationProperty Name="Students_id1" Relationship="Self.FK__Students__studen__1CBC4616" FromRole="Students" ToRole="Students_id" />
+        </EntityType>
+        <EntityType Name="Students_id">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="group_students" Type="Int32" />
+          <NavigationProperty Name="Group_students1" Relationship="Self.FK__Students___group__151B244E" FromRole="Students_id" ToRole="Group_students" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__studen__1CBC4616" FromRole="Students_id" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Students__count___18EBB532">
+          <End Role="Count_of_students" Type="Self.Count_of_students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Count_of_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="count_of_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__form_o__1BC821DD">
+          <End Role="Form_of_education" Type="Self.Form_of_education" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form_of_education">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="form_of_education" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students___group__151B244E">
+          <End Role="Group_students" Type="Self.Group_students" Multiplicity="0..1" />
+          <End Role="Students_id" Type="Self.Students_id" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students_id">
+              <PropertyRef Name="group_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__inform__1DB06A4F">
+          <End Role="Information_about_student_families" Type="Self.Information_about_student_families" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information_about_student_families">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="information_about_student_families" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Needing_s__orpha__4AB81AF0">
+          <End Role="Orphan_students" Type="Self.Orphan_students" Multiplicity="0..1" />
+          <End Role="Needing_social_protection" Type="Self.Needing_social_protection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orphan_students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Needing_social_protection">
+              <PropertyRef Name="orphan_students" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__needin__1AD3FDA4">
+          <End Role="Needing_social_protection" Type="Self.Needing_social_protection" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Needing_social_protection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="needing_social_protection" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__place___19DFD96B">
+          <End Role="Place_of_residence" Type="Self.Place_of_residence" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place_of_residence">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="place_of_residence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__studen__1CBC4616">
+          <End Role="Students_id" Type="Self.Students_id" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Students_id">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="students_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentsEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autorization" EntityType="Self.Autorization" />
+          <EntitySet Name="Count_of_students" EntityType="Self.Count_of_students" />
+          <EntitySet Name="Curators" EntityType="Self.Curators" />
+          <EntitySet Name="Form_of_education" EntityType="Self.Form_of_education" />
+          <EntitySet Name="Group_students" EntityType="Self.Group_students" />
+          <EntitySet Name="Information_about_student_families" EntityType="Self.Information_about_student_families" />
+          <EntitySet Name="Needing_social_protection" EntityType="Self.Needing_social_protection" />
+          <EntitySet Name="Orphan_students" EntityType="Self.Orphan_students" />
+          <EntitySet Name="Place_of_residence" EntityType="Self.Place_of_residence" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="Students_id" EntityType="Self.Students_id" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Students__count___18EBB532" Association="Self.FK__Students__count___18EBB532">
+            <End Role="Count_of_students" EntitySet="Count_of_students" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__form_o__1BC821DD" Association="Self.FK__Students__form_o__1BC821DD">
+            <End Role="Form_of_education" EntitySet="Form_of_education" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students___group__151B244E" Association="Self.FK__Students___group__151B244E">
+            <End Role="Group_students" EntitySet="Group_students" />
+            <End Role="Students_id" EntitySet="Students_id" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__inform__1DB06A4F" Association="Self.FK__Students__inform__1DB06A4F">
+            <End Role="Information_about_student_families" EntitySet="Information_about_student_families" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Needing_s__orpha__4AB81AF0" Association="Self.FK__Needing_s__orpha__4AB81AF0">
+            <End Role="Orphan_students" EntitySet="Orphan_students" />
+            <End Role="Needing_social_protection" EntitySet="Needing_social_protection" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__needin__1AD3FDA4" Association="Self.FK__Students__needin__1AD3FDA4">
+            <End Role="Needing_social_protection" EntitySet="Needing_social_protection" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__place___19DFD96B" Association="Self.FK__Students__place___19DFD96B">
+            <End Role="Place_of_residence" EntitySet="Place_of_residence" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__studen__1CBC4616" Association="Self.FK__Students__studen__1CBC4616">
+            <End Role="Students_id" EntitySet="Students_id" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище StudentsModelContainer" CdmEntityContainer="StudentsEntities2">
+          <EntitySetMapping Name="Autorization">
+            <EntityTypeMapping TypeName="StudentsModel.Autorization">
+              <MappingFragment StoreEntitySet="Autorization">
+                <ScalarProperty Name="login_user" ColumnName="login_user" />
+                <ScalarProperty Name="password_user" ColumnName="password_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Count_of_students">
+            <EntityTypeMapping TypeName="StudentsModel.Count_of_students">
+              <MappingFragment StoreEntitySet="Count_of_students">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="from_Minsk" ColumnName="from_Minsk" />
+                <ScalarProperty Name="from_the_countryside" ColumnName="from_the_countryside" />
+                <ScalarProperty Name="from_other_regions" ColumnName="from_other_regions" />
+                <ScalarProperty Name="from_CIS_countries" ColumnName="from_CIS_countries" />
+                <ScalarProperty Name="from_other_countries" ColumnName="from_other_countries" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curators">
+            <EntityTypeMapping TypeName="StudentsModel.Curators">
+              <MappingFragment StoreEntitySet="Curators">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="number_of_group" ColumnName="number_of_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Form_of_education">
+            <EntityTypeMapping TypeName="StudentsModel.Form_of_education">
+              <MappingFragment StoreEntitySet="Form_of_education">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="budget" ColumnName="budget" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_students">
+            <EntityTypeMapping TypeName="StudentsModel.Group_students">
+              <MappingFragment StoreEntitySet="Group_students">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="number_of_group" ColumnName="number_of_group" />
+                <ScalarProperty Name="faculty" ColumnName="faculty" />
+                <ScalarProperty Name="year_of_create" ColumnName="year_of_create" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Information_about_student_families">
+            <EntityTypeMapping TypeName="StudentsModel.Information_about_student_families">
+              <MappingFragment StoreEntitySet="Information_about_student_families">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="single_parent_students" ColumnName="single_parent_students" />
+                <ScalarProperty Name="students_from_large_families" ColumnName="students_from_large_families" />
+                <ScalarProperty Name="students_with_disabled_parents_1_2_groups" ColumnName="students_with_disabled_parents_1_2_groups" />
+                <ScalarProperty Name="affected_by_the_Chernobyl_accident" ColumnName="affected_by_the_Chernobyl_accident" />
+                <ScalarProperty Name="disaster_victims" ColumnName="disaster_victims" />
+                <ScalarProperty Name="refugee_families" ColumnName="refugee_families" />
+                <ScalarProperty Name="parents_died_during_passage_of_military_or_police_services" ColumnName="parents_died_during_passage_of_military_or_police_services" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Needing_social_protection">
+            <EntityTypeMapping TypeName="StudentsModel.Needing_social_protection">
+              <MappingFragment StoreEntitySet="Needing_social_protection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="orphan_students" ColumnName="orphan_students" />
+                <ScalarProperty Name="lost_the_last_of_the_parents_in_the_period_of_study" ColumnName="lost_the_last_of_the_parents_in_the_period_of_study" />
+                <ScalarProperty Name="in_custody" ColumnName="in_custody" />
+                <ScalarProperty Name="disabled_students" ColumnName="disabled_students" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orphan_students">
+            <EntityTypeMapping TypeName="StudentsModel.Orphan_students">
+              <MappingFragment StoreEntitySet="Orphan_students">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="at_full_state_providing" ColumnName="at_full_state_providing" />
+                <ScalarProperty Name="have_a_guardian" ColumnName="have_a_guardian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Place_of_residence">
+            <EntityTypeMapping TypeName="StudentsModel.Place_of_residence">
+              <MappingFragment StoreEntitySet="Place_of_residence">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="in_dorm" ColumnName="in_dorm" />
+                <ScalarProperty Name="in_a_private_apartment" ColumnName="in_a_private_apartment" />
+                <ScalarProperty Name="houses" ColumnName="houses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="StudentsModel.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="students_id" ColumnName="students_id" />
+                <ScalarProperty Name="count_of_students" ColumnName="count_of_students" />
+                <ScalarProperty Name="place_of_residence" ColumnName="place_of_residence" />
+                <ScalarProperty Name="needing_social_protection" ColumnName="needing_social_protection" />
+                <ScalarProperty Name="underage_students" ColumnName="underage_students" />
+                <ScalarProperty Name="information_about_student_families" ColumnName="information_about_student_families" />
+                <ScalarProperty Name="internal_control_students" ColumnName="internal_control_students" />
+                <ScalarProperty Name="underperforming_students" ColumnName="underperforming_students" />
+                <ScalarProperty Name="family_students" ColumnName="family_students" />
+                <ScalarProperty Name="students_with_children" ColumnName="students_with_children" />
+                <ScalarProperty Name="with_severe_chronic_diseases" ColumnName="with_severe_chronic_diseases" />
+                <ScalarProperty Name="form_of_education" ColumnName="form_of_education" />
+                <ScalarProperty Name="student_activists" ColumnName="student_activists" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students_id">
+            <EntityTypeMapping TypeName="StudentsModel.Students_id">
+              <MappingFragment StoreEntitySet="Students_id">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="group_students" ColumnName="group_students" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StudentsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
