@@ -8,10 +8,8 @@ namespace couse
 {
     public class Curator
     {
-
-        public string curator { get; set; }
-        public int number { get; set; }
-        public List<int> groups { get; set; }
-    
+        public string FIO { get; set; }
+        public int Number { get; set; }
+        public List<int> Groups { get; set; }    
     }
 }

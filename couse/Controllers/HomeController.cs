@@ -57,8 +57,18 @@ namespace couse.Controllers
             objbulk.ColumnMappings.Add("ID", "ID");
             objbulk.ColumnMappings.Add("budget", "budget");
             objbulk.ColumnMappings.Add("paid", "paid");
+            SqlBulkCopy objbulk1 = new SqlBulkCopy(con);
+            objbulk1.DestinationTableName = "Needing_social_protection";
+            objbulk1.ColumnMappings.Add("ID", "ID");
+            objbulk1.ColumnMappings.Add("orphan students", "orphan_students");
+            objbulk1.ColumnMappings.Add("lost_the_last_of_the_parents_in_the_period_of_study", "lost_the_last_of_the_parents_in_the_period_of_study");
+            objbulk1.ColumnMappings.Add("in_custody", "in_custody");
+            objbulk1.ColumnMappings.Add("disabled_students", "disabled_students");
+            //objbulk.ColumnMappings.Add("paid", "paid");
+
             con.Open();
             objbulk.WriteToServer(dt);
+            objbulk1.WriteToServer(dt);
             con.Close();
         }
 

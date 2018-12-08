@@ -19,24 +19,27 @@ namespace couse.Controllers
             var ctx = new StudentsModel();
             foreach (var c in curators)
             {
-                var cur = ctx.Curators.Single( g => g.FIO == c.curator);
-                cur.number_of_group = c.number;
-                
+                var cur = ctx.Curators.Single( g => g.FIO.Trim() == c.FIO.Trim());
+                cur.number_of_group = c.Number;     
+                //c.Grou
             }
             ctx.SaveChanges();
-            return View(curators);
+            return new JsonResult();
         }
+
         // GET: Account
         public ActionResult Index()
         {
             var ctx = new StudentsModel();
             var groups = ctx.Group_students;
             var model = new List<Curator>();
-            foreach(var st in ctx.Curators)
+            foreach(var cur in ctx.Curators)
             {
-                model.Add(new Curator {curator = st.FIO , groups = groups.Select(g => g.number_of_group).ToList() });
+                model.Add(new Curator {FIO = cur.FIO, Groups = groups.Select(g => g.ID).ToList(), Number = cur.number_of_group ?? 0});
             }
-            return View(model);//создать переменную и сюда передать, создать dropdown
+            //number_of_group
+            return View(model);
+            //создать переменную и сюда передать, создать dropdown
         }
 
         public ActionResult AddCurators()

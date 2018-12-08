@@ -10,22 +10,63 @@
 
 <br />
 
-@using (Html.BeginForm("Index", "Account"))
+@*@using (Html.BeginForm("Index", "Account"))
+    {*@
+
+
+@foreach (Curator cur in Model)//.number_of_group)
 {
+    <div class="curator">
 
+        <label>@cur.FIO</label>
+        <select>
+            @foreach (var gr in cur.Groups)
+            {
+                if (gr == cur.Number)
+                {
+                    //? "selecteda" : "false")"
+                    <option selected>@gr</option>
+                }
+                else
+                {
+                    <option>@gr</option>
+                }
+            }
 
-    foreach(Curator cur in Model)//.number_of_group)
-    {
-<div>
-    <label> @cur.curator </label>@*@comp.number_of_group*@
-    <select>
-        @foreach (var gr in cur.groups)
-        {
-            <option>@gr</option>
-        }
-    </select> 
-</div>
-    }
- 
-<input type="submit" value="Save"/>
+        </select>
+
+    </div>
 }
+
+@*@comp.number_of_group*@
+@*@Html.TextBoxFor( g => cur.curator)*@
+
+<input type="button" id="save" value="Save" />
+
+<script>
+    $("#save").on("click", function (e) {
+        e.preventDefault();
+
+        var curs = [];
+
+        //debugger;
+        $(".curator").each(function () {
+            var fio = $(this).find("label").text();
+            var number = $(this).find("select option:selected").text();
+            var curator = { FIO: fio, Number: number };
+            curs.push(curator);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Index", "Account")",
+            //dataType: JSON,
+            data: {
+                curators: curs
+            },
+            success: function () {
+
+            }
+        });
+    });
+</script>
