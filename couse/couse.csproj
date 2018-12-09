@@ -243,6 +243,20 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="mod\Autorization.cs" />
+    <Compile Include="mod\Count_of_students.cs" />
+    <Compile Include="mod\Curators.cs" />
+    <Compile Include="mod\Form_of_education.cs" />
+    <Compile Include="mod\Group_students.cs" />
+    <Compile Include="mod\Information_about_student_families.cs" />
+    <Compile Include="mod\Needing_social_protection.cs" />
+    <Compile Include="mod\Orphan_students.cs" />
+    <Compile Include="mod\Place_of_residence.cs" />
+    <Compile Include="mod\StudentModel.cs" />
+    <Compile Include="mod\Students.cs" />
+    <Compile Include="mod\Students_all.cs" />
+    <Compile Include="mod\Students_id.cs" />
+    <Compile Include="mod\sysdiagrams.cs" />
     <Compile Include="Needing_social_protection.cs" />
     <Compile Include="Orphan_students.cs" />
     <Compile Include="Place_of_residence.cs" />

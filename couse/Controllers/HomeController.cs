@@ -13,7 +13,7 @@ namespace couse.Controllers
 {
     public class HomeController : Controller
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["StudentsModel"].ConnectionString);
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["StudentModel"].ConnectionString);
         OleDbConnection Econ;
         public ActionResult Index()
         {
@@ -53,22 +53,42 @@ namespace couse.Controllers
             DataTable dt = ds.Tables[0];
 
             SqlBulkCopy objbulk = new SqlBulkCopy(con);
-            objbulk.DestinationTableName = "Form_of_education";
-            objbulk.ColumnMappings.Add("ID", "ID");
+            objbulk.DestinationTableName = "Students_all";
+            objbulk.ColumnMappings.Add("FIO", "FIO");
+            objbulk.ColumnMappings.Add("number_of_group", "number_of_group");
+            objbulk.ColumnMappings.Add("from_Minsk", "from_Minsk");
+            objbulk.ColumnMappings.Add("from_the_countryside", "from_the_countryside");
+            objbulk.ColumnMappings.Add("from_other_regions", "from_other_regions");
+            objbulk.ColumnMappings.Add("from_CIS_countries", "from_CIS_countries");
+            objbulk.ColumnMappings.Add("from_other_countries", "from_other_countries");
+            objbulk.ColumnMappings.Add("in_dorm", "in_dorm");
+            objbulk.ColumnMappings.Add("in_a_private_apartment", "in_a_private_apartment");
+            objbulk.ColumnMappings.Add("houses", "houses");
+            objbulk.ColumnMappings.Add("at_full_state_providing", "at_full_state_providing");
+            objbulk.ColumnMappings.Add("have_a_guardian", "have_a_guardian");
+            objbulk.ColumnMappings.Add("orphan_students", "orphan_students");
+            objbulk.ColumnMappings.Add("lost_the_last_of_the_parents_in_the_period_of_study", "lost_the_last_of_the_parents_in_the_period_of_study");
+            objbulk.ColumnMappings.Add("in_custody", "in_custody");
+            objbulk.ColumnMappings.Add("disabled_students", "disabled_students");
+            objbulk.ColumnMappings.Add("underage_students", "underage_students");
+            objbulk.ColumnMappings.Add("single_parent_students", "single_parent_students");
+            objbulk.ColumnMappings.Add("students_from_large_families", "students_from_large_families");
+            objbulk.ColumnMappings.Add("students_with_disabled_parents_1_2_groups", "students_with_disabled_parents_1_2_groups");
+            objbulk.ColumnMappings.Add("affected_by_the_Chernobyl_accident", "affected_by_the_Chernobyl_accident");
+            objbulk.ColumnMappings.Add("disaster_victims", "disaster_victims");
+            objbulk.ColumnMappings.Add("refugee_families", "refugee_families");
+            objbulk.ColumnMappings.Add("parents_died_during_passage_of_military_or_police_services", "parents_died_during_passage_of_military_or_police_services");
+            objbulk.ColumnMappings.Add("internal_control_students", "internal_control_students");
+            objbulk.ColumnMappings.Add("underperforming_students", "underperforming_students");
+            objbulk.ColumnMappings.Add("family_students", "family_students");
+            objbulk.ColumnMappings.Add("students_with_children", "students_with_children");
+            objbulk.ColumnMappings.Add("with_severe_chronic_diseases", "with_severe_chronic_diseases");
             objbulk.ColumnMappings.Add("budget", "budget");
             objbulk.ColumnMappings.Add("paid", "paid");
-            SqlBulkCopy objbulk1 = new SqlBulkCopy(con);
-            objbulk1.DestinationTableName = "Needing_social_protection";
-            objbulk1.ColumnMappings.Add("ID", "ID");
-            objbulk1.ColumnMappings.Add("orphan students", "orphan_students");
-            objbulk1.ColumnMappings.Add("lost_the_last_of_the_parents_in_the_period_of_study", "lost_the_last_of_the_parents_in_the_period_of_study");
-            objbulk1.ColumnMappings.Add("in_custody", "in_custody");
-            objbulk1.ColumnMappings.Add("disabled_students", "disabled_students");
-            //objbulk.ColumnMappings.Add("paid", "paid");
+            objbulk.ColumnMappings.Add("student_activists", "student_activists");
 
             con.Open();
             objbulk.WriteToServer(dt);
-            objbulk1.WriteToServer(dt);
             con.Close();
         }
 
