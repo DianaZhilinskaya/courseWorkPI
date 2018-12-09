@@ -5,6 +5,7 @@ namespace couse.mod
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.ComponentModel;
 
     [Table("Autorization")]
     public partial class Autorization
@@ -13,10 +14,14 @@ namespace couse.mod
         [Column(Order = 0)]
         [StringLength(20)]
         public string login_user { get; set; }
-
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "This field is required.")]
         [Key]
         [Column(Order = 1)]
         [StringLength(15)]
         public string password_user { get; set; }
+        
+        public string loginErrorMessage { get; set; }
+
     }
 }

@@ -1,0 +1,64 @@
+﻿@model couse.mod.Autorization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+        <table>
+
+            <tr>
+                <td></td>
+                <td style="text-decoration:underline">App Name</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.login_user)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.login_user)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => model.login_user)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.password_user)
+                    @Html.EditorFor(model => model.password_user)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => model.password_user)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <label class="field-validation-error">@Html.DisplayFor( model => model.loginErrorMessage) </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <input type="submit" name="name" value="login" />
+                <input type="reset" name="name" value="clear" />
+            </tr>
+        </table>
+        }
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

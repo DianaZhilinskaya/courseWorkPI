@@ -1,8 +1,10 @@
-﻿using System;
+﻿using couse.mod;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace couse.Controllers
 {
@@ -16,7 +18,7 @@ namespace couse.Controllers
         [HttpPost]
         public ActionResult Index(IEnumerable<Curator> curators)
         {
-            var ctx = new StudentsModel();
+            var ctx = new StudentModel();
             foreach (var c in curators)
             {
                 var cur = ctx.Curators.Single( g => g.FIO.Trim() == c.FIO.Trim());
@@ -30,7 +32,7 @@ namespace couse.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            var ctx = new StudentsModel();
+            var ctx = new StudentModel();
             var groups = ctx.Group_students;
             var model = new List<Curator>();
             foreach(var cur in ctx.Curators)
