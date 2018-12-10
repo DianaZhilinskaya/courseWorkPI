@@ -18,5 +18,6 @@ namespace couse
         [Column(Order = 1)]
         [StringLength(15)]
         public string password_user { get; set; }
+
     }
 }

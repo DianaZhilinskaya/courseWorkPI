@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Student>
+@using couse.Models;
+@using couse;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Curator</h2>
+
+<br />
+
+<label>@Session["login_user"]</label>
+<label>@Model.First().group_students</label>
+@foreach (Student stud in Model)
+{
+    <div class="student">
+
+        <label>@stud.FIO</label>
+
+
+    </div>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Curator</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>

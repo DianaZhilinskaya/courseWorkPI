@@ -12,7 +12,7 @@ namespace couse.mod
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(20)]
+        [StringLength(70)]
         public string login_user { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "This field is required.")]
@@ -21,7 +21,7 @@ namespace couse.mod
         [StringLength(15)]
         public string password_user { get; set; }
         
-        public string loginErrorMessage { get; set; }
+        //public string loginErrorMessage { get; set; }
 
     }
 }
