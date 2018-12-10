@@ -6,12 +6,23 @@
     ViewBag.Title = "Index";
 }
 
+<style type="text/css">
+    label {
+        font-size: 120%;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: #333366;
+    }
+    p {
+        border: 1px solid red;
+        padding: 10px;
+    }
+</style>
+
 <h2>Curator</h2>
 
 <br />
 
-<label>@Session["login_user"]</label>
-<label>@Model.First().group_students</label>
+<p><label>@Session["login_user"]</label></p><p><label>@Model.First().group_students</label></p>
 @foreach (Student stud in Model)
 {
     <div class="student">
@@ -32,5 +43,15 @@
 <body>
     <div>
     </div>
+
+    <h2>Excel Import</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <input name="file" type="file" required />
+            <button type="submit">Import</button>
+        </div>
+    </form>
+
 </body>
 </html>
