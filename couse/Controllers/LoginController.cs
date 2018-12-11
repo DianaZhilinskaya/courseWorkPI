@@ -14,6 +14,7 @@ namespace couse.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Authorize(couse.mod.Autorization login_model)
         {
@@ -22,7 +23,7 @@ namespace couse.Controllers
                 var userDetails = db.Autorization.Where(x => x.login_user == login_model.login_user && x.password_user == login_model.password_user).FirstOrDefault();
                 if (userDetails == null)
                 {
-                 //  login_model.loginErrorMessage = "Wrong username or password.";
+                    ModelState.AddModelError("*", "Wrong username or password.");
                     return View("Index", login_model);
                 }
                 else
@@ -30,15 +31,17 @@ namespace couse.Controllers
                     Session["login_user"] = userDetails.login_user;
                     if (userDetails.login_user == "admin")
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Account");
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Curator");
+                         return RedirectToAction("Index", "Curator");
                     }
                 }
             }
-                return View();
+                //return View();
         }
+
+
     }
 }

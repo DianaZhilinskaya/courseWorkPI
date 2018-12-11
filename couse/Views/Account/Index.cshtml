@@ -6,44 +6,124 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+<style type="text/css" >
+
+    .outline {
+        border: 2px solid black;
+        padding: 0 0px;
+        color: black;
+        font-family:'Times New Roman', Times, serif;
+    }
+
+    body {
+        background: linear-gradient(gray, white);
+    }
+
+    input{
+        font-weight: 10;
+        color: white;
+        border-radius: 1px;
+        background: rgb(0, 0, 0);
+    }
+
+    input:hover {
+            background: rgb(53, 167, 110);
+        }
+
+    input:active {
+            background: rgb(33,147,90);
+            box-shadow: 0 3px rgb(33,147,90) inset;
+        }
+
+</style>
+
+<h2>Admin</h2>
 
 <br />
 
 @*@using (Html.BeginForm("Index", "Account"))
     {*@
+<body>
+
+    @foreach (Curator cur in Model)//.number_of_group)
+    {
+        <div class="curator">
+            <div class="outline">
+                <label>@cur.FIO</label>
+                <select>
+                    @foreach (var gr in cur.Groups)
+                    {
+                        if (gr == cur.Number)
+                        {
+                            //? "selecteda" : "false")"
+                            <option selected>@gr</option>
+                        }
+                        else
+                        {
+                            <option>@gr</option>
+                        }
+                    }
+
+                </select>
+            </div>
+        </div>
+    }
 
 
-@foreach (Curator cur in Model)//.number_of_group)
-{
-    <div class="curator">
+    @*@foreach (Authorization cur in Model)//.number_of_group)
+        {
+            <div class="curator">
 
-        <label>@cur.FIO</label>
-        <select>
-            @foreach (var gr in cur.Groups)
-            {
-                if (gr == cur.Number)
+                <label>@cur.FIO</label>
+                <select>
+                    @foreach (var gr in cur.Groups)
+                    {
+                        if (gr == cur.Number)
+                        {
+                            //? "selecteda" : "false")"
+                            <option selected>@gr</option>
+                        }
+                        else
+                        {
+                            <option>@gr</option>
+                        }
+                    }
+
+                </select>
+
+            </div>
+        }*@
+
+    @*/type="submit*@
+
+    <input type="button" id="save" value="Save" />
+
+    <div class="new">
+            <input  value="Вася" />
+            <select>
+                @foreach (var gr in Model.First().Groups)
                 {
-                    //? "selecteda" : "false")"
-                    <option selected>@gr</option>
-                }
-                else
-                {
+                    //if (gr == cur.Number)
+
                     <option>@gr</option>
                 }
-            }
+            </select>
+            @*pass*@
+            @*<input value="1234" />
+            <select>
+                @foreach (var passw in Model.First().A)
+                {
+                    //if (gr == cur.Number)
 
-        </select>
+                    <option>@passw</option>
+                }
+            </select>
+            pass*@
+            <input id="add" type="button" value="create" />
+        </div>
 
-    </div>
-}
-
-@*@comp.number_of_group*@
-@*@Html.TextBoxFor( g => cur.curator)*@
-
-<input type="button" id="save" value="Save" />
-
-<script>
+        <script>
     $("#save").on("click", function (e) {
         e.preventDefault();
 
@@ -69,4 +149,28 @@
             }
         });
     });
-</script>
+
+    $("#add").on("click", function (e) {
+        e.preventDefault();
+
+        var FIO = $(".new").find("input").val();
+        var Number = $(".new").find("select option:selected").text();
+        var Pass = $(".new").find("select option:selected").text();
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Add", "Account")",
+            data: {
+                fio: FIO,
+                number: Number,
+                pass: Pass
+            }
+        });
+            //.done(function () {
+        //    debugger;
+        window.location.href = '@Url.Action("Index")';
+            //});
+    });
+
+        </script>
+</body>

@@ -12,49 +12,51 @@
 </head>
 <body>
     <div id="login-div">
+        @Html.ValidationSummary("Common_Validation_ImportantInformation")
+
         @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
         {
-        <table>
+            <table>
 
-            <tr>
-                <td></td>
-                <td style="text-decoration:underline">App Name</td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.login_user)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.EditorFor(model => model.login_user)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>@Html.ValidationMessageFor(model => model.login_user)</td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(model => model.password_user)
-                    @Html.EditorFor(model => model.password_user)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>@Html.ValidationMessageFor(model => model.password_user)</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                @*<label class="field-validation-error">@Html.DisplayFor( model => model.loginErrorMessage) </label>*@
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <input type="submit" name="name" value="login" />
-                <input type="reset" name="name" value="clear" />
-            </tr>
-        </table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline">App Name</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.login_user)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.EditorFor(model => model.login_user)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.login_user)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.password_user)
+                        @Html.EditorFor(model => model.password_user)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.password_user)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        @*<label class="field-validation-error">@Html.DisplayFor( model => model.loginErrorMessage) </label>*@
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <input type="submit" name="name" value="login" />
+                    <input type="reset" name="name" value="clear" />
+                </tr>
+            </table>
         }
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>

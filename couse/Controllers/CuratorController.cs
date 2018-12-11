@@ -44,7 +44,7 @@ namespace couse.Controllers
             file.SaveAs(Path.Combine(Server.MapPath("/excelfolder"), filename));
             InsertExceldata(filepath, filename);
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         private void ExcelConn(string filepath)

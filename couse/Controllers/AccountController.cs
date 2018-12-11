@@ -21,7 +21,7 @@ namespace couse.Controllers
             var ctx = new StudentModel();
             foreach (var c in curators)
             {
-                var cur = ctx.Curators.Single( g => g.FIO.Trim() == c.FIO.Trim());
+                var cur = ctx.Curators.Single(g => g.FIO.Trim() == c.FIO.Trim());
                 cur.number_of_group = c.Number;     
                 //c.Grou
             }
@@ -37,17 +37,30 @@ namespace couse.Controllers
             var model = new List<Curator>();
             foreach(var cur in ctx.Curators)
             {
-                model.Add(new Curator {FIO = cur.FIO, Groups = groups.Select(g => g.ID).ToList(), Number = cur.number_of_group ?? 0});
+                model.Add(new Curator {FIO = cur.FIO, Groups = groups.Select(g => g. ID).ToList(), Number = cur.number_of_group ?? 0});
             }
             //number_of_group
             return View(model);
-            //создать переменную и сюда передать, создать dropdown
         }
 
-        public ActionResult AddCurators()
+        [HttpPost]
+        public ActionResult Add(string fio, int number, string password)
         {
-            return View();
+            var ctx = new StudentModel();
+            ctx.Curators.Add(new mod.Curators()
+            {
+                FIO = fio,
+                number_of_group = number,
+                
+            });
+
+            //add login
+
+            ctx.SaveChanges();/////ОШИБКА
+
+            return new JsonResult();
         }
+
         public ActionResult DeleteCurators()
         {
             return View();
