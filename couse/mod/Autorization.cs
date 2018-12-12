@@ -13,12 +13,14 @@ namespace couse.mod
         [Key]
         [Column(Order = 0)]
         [StringLength(70)]
+        [DisplayName("Login")]
         public string login_user { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "This field is required.")]
         [Key]
         [Column(Order = 1)]
         [StringLength(15)]
+        [DisplayName("Password")]
         public string password_user { get; set; }
         
         //public string loginErrorMessage { get; set; }

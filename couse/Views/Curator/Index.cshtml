@@ -6,52 +6,81 @@
     ViewBag.Title = "Index";
 }
 
+<h2>Curator</h2>
+
 <style type="text/css">
-    label {
-        font-size: 120%;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        color: #333366;
+
+    .outline {
+        border: 2px solid black;
+        padding: 0 0px;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        align-content: center;
     }
-    p {
-        border: 1px solid red;
-        padding: 10px;
+
+    body {
+        background: url(image/4.png) no-repeat center content-box;
+        /*linear-gradient(palegreen, white);*/
+    }
+
+    input {
+        font-weight: 10;
+        color: black;
+        border-radius: 1px;
+        background: #b8b3b3;
+    }
+
+        input:hover {
+            background: rgb(53, 167, 110);
+        }
+
+        input:active {
+            background: rgb(33,147,90);
+            box-shadow: 0 3px rgb(33,147,90) inset;
+        }
+
+    h2 {
+        align-content: center;
+        color: black;
+    }
+
+    label{
+        font-family:'Times New Roman', Times, serif;
+        align-content:center;
     }
 </style>
 
-<h2>Curator</h2>
+
 
 <br />
-
-<p><label>@Session["login_user"]</label></p><p><label>@Model.First().group_students</label></p>
-@foreach (Student stud in Model)
-{
-    <div class="student">
-
-        <label>@stud.FIO</label>
+<br><br><br>
 
 
-    </div>
-}
+        <body>
+            
+            <p><div class="outline"><label>@Session["login_user"] </label></div><div class="outline"><label>Group: @Model.First().group_students</label></div></p>
+            @foreach (Student stud in Model)
+            {
+                <div class="student">
+                    <div class="outline">
 
-<!DOCTYPE html>
+                        <label>@stud.FIO</label>
+                    </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Curator</title>
-</head>
-<body>
-    <div>
-    </div>
+                </div>
+            }
 
-    <h2>Excel Import</h2>
 
-    <form method="post" enctype="multipart/form-data">
-        <div>
-            <input name="file" type="file" required />
-            <button type="submit">Import</button>
-        </div>
-    </form>
+            <div>
+            </div>
 
-</body>
-</html>
+            <h2>Excel Import</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                <div>
+                    <input name="file" type="file" required />
+                    <button type="submit">Import</button>
+                </div>
+            </form>
+
+        </body>
