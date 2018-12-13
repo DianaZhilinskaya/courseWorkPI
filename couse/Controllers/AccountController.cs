@@ -15,19 +15,7 @@ namespace couse.Controllers
 
         }
         
-        [HttpPost]
-        public ActionResult Index(IEnumerable<Curator> curators)
-        {
-            var ctx = new StudentModel();
-            foreach (var c in curators)
-            {
-                var cur = ctx.Curators.Single(g => g.FIO.Trim() == c.FIO.Trim());
-                cur.number_of_group = c.Number;     
-                //c.Grou
-            }
-            ctx.SaveChanges();
-            return new JsonResult();
-        }
+        
 
         // GET: Account
         public ActionResult Index()
@@ -44,26 +32,39 @@ namespace couse.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(string fio, int number, string password)
+        public ActionResult Save(IEnumerable<Curator> curators)
+        {
+            var ctx = new StudentModel();
+            foreach (var c in curators)
+            {
+                var cur = ctx.Curators.Single(g => g.FIO.Trim() == c.FIO.Trim());
+                cur.number_of_group = c.Number;
+                //c.Grou
+            }
+            ctx.SaveChanges();
+            return new JsonResult();
+        }
+
+        [HttpPost]
+        public ActionResult Add(string fio, int number, string pass)
         {
             var ctx = new StudentModel();
             ctx.Curators.Add(new mod.Curators()
             {
                 FIO = fio,
                 number_of_group = number,
-                
             });
 
-            //add login
-
-            ctx.SaveChanges();/////ОШИБКА
-
+            ctx.Autorization.Add(new mod.Autorization()
+            {
+                login_user = fio,
+                password_user = pass,
+            });
+            ctx.SaveChanges();
+           
             return new JsonResult();
         }
 
-        public ActionResult DeleteCurators()
-        {
-            return View();
-        }
+        
     }
 }

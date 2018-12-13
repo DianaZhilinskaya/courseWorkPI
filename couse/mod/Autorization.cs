@@ -10,6 +10,7 @@ namespace couse.mod
     [Table("Autorization")]
     public partial class Autorization
     {
+        [Required(ErrorMessage = "This field is required.")]
         [Key]
         [Column(Order = 0)]
         [StringLength(70)]
@@ -23,7 +24,5 @@ namespace couse.mod
         [DisplayName("Password")]
         public string password_user { get; set; }
         
-        //public string loginErrorMessage { get; set; }
-
     }
 }

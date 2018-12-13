@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Curator>
+@using couse.Models;
+@using couse;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style type="text/css" >
+
+    .outline {
+        border: 2px solid black;
+        padding: 0 0px;
+        color: black;
+        font-family:'Times New Roman', Times, serif;
+        align-content:center;
+    }
+
+    body {
+        background: url(image/4.png) no-repeat center content-box ;
+    }
+
+    input {
+        font-weight: 10;
+        color: black;
+        border-radius: 1px;
+        background: #b8b3b3;
+    }
+
+    input:hover {
+            background: rgb(53, 167, 110);
+        }
+
+    input:active {
+            background: rgb(33,147,90);
+            box-shadow: 0 3px white inset;
+        }
+
+    h2{
+        align-content:center;
+        color:white;
+    }
+
+
+</style>
+
+<h2>Admin</h2>
+
+<br />
+
+<br><br><br><br>
+
+@*@using (Html.BeginForm("Index", "Account"))
+    {*@
+            <body>
+
+                @foreach (Curator cur in Model)//.number_of_group)
+                {
+                    <div class="curator" >
+                        <div class="outline">
+                            <label>@cur.FIO</label>
+                            <select>
+                                @foreach (var gr in cur.Groups)
+                                {
+                                    if (gr == cur.Number)
+                                    {
+                                        //? "selecteda" : "false")"
+                                        <option selected>@gr</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@gr</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                }
+
+
+                @*/type="submit*@
+
+                <input type="button" id="save" value="Save" />
+                <br> <br> <br>
+                          <div class="new">
+                              <input id="fio" value="Вася" />
+                              <select>
+                                  @foreach (var gr in Model.First().Groups)
+                                  {
+                                      //if (gr == cur.Number)
+
+                                      <option>@gr</option>
+                                  }
+                              </select>
+                              @*pass*@
+                              <input id="pass" type="password" />
+            
+                              <input id="add" type="button" value="create" />
+                          </div>
+            </body>
+        
+
+<script>
+    $("#save").on("click", function (e) {
+        //e.preventDefault();
+
+        var curs = [];
+
+        //debugger;
+        $(".curator").each(function () {
+            var fio = $(this).find("label").text();
+            var number = $(this).find("select option:selected").text();
+            var curator = { FIO: fio, Number: number };
+            curs.push(curator);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Save", "Account")",
+            //dataType: JSON,
+            data: {
+                curators: curs
+            },
+            success: function () {
+            }
+        });
+        alert("Сохранение прошло успешно");
+    });
+
+    $("#add").on("click", function (e) {
+        //e.preventDefault();
+
+        var FIO = $(".new").find("#fio").val();
+        var Number = $(".new").find("select option:selected").text();
+        var Pass = $(".new").find("#pass").val();
+        //ct option: selected")
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Add", "Account")",
+            data: {
+                fio: FIO,
+                number: Number,
+                pass: Pass
+            }
+        });
+            
+        window.location.href = '@Url.Action("Index")';
+    });
+
+        </script>

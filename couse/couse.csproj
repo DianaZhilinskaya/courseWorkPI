@@ -179,16 +179,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Autorization.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CuratorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Count_of_students.cs" />
-    <Compile Include="Curators.cs" />
-    <Compile Include="Form_of_education.cs" />
-    <Compile Include="Group_students.cs" />
-    <Compile Include="Information_about_student_families.cs" />
     <Compile Include="Models\Curator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,13 +254,7 @@
     <Compile Include="mod\Students_all.cs" />
     <Compile Include="mod\Students_id.cs" />
     <Compile Include="mod\sysdiagrams.cs" />
-    <Compile Include="Needing_social_protection.cs" />
-    <Compile Include="Orphan_students.cs" />
-    <Compile Include="Place_of_residence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Students.cs" />
-    <Compile Include="StudentsModel.cs" />
-    <Compile Include="Students_id.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -299,6 +287,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -327,13 +316,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\AddGroup.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Curator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="excelfolder\" />
+    <Folder Include="excelload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

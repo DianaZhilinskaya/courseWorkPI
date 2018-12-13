@@ -65,7 +65,6 @@
                                 {
                                     if (gr == cur.Number)
                                     {
-                                        //? "selecteda" : "false")"
                                         <option selected>@gr</option>
                                     }
                                     else
@@ -80,65 +79,31 @@
                 }
 
 
-                @*@foreach (Authorization cur in Model)//.number_of_group)
-        {
-            <div class="curator">
-
-                <label>@cur.FIO</label>
-                <select>
-                    @foreach (var gr in cur.Groups)
-                    {
-                        if (gr == cur.Number)
-                        {
-                            //? "selecteda" : "false")"
-                            <option selected>@gr</option>
-                        }
-                        else
-                        {
-                            <option>@gr</option>
-                        }
-                    }
-
-                </select>
-
-            </div>
-        }*@
-
                 @*/type="submit*@
 
                 <input type="button" id="save" value="Save" />
                 <br> <br> <br>
-                <div class="new">
-                    <input value="Вася" />
-                    <select>
-                        @foreach (var gr in Model.First().Groups)
-                        {
-                            //if (gr == cur.Number)
-
-                            <option>@gr</option>
-                        }
-                    </select>
-                    @*pass*@
-                    @*<input value="1234" />
-            <select>
-                @foreach (var passw in Model.First().A)
-                {
-                    //if (gr == cur.Number)
-
-                    <option>@passw</option>
-                }
-            </select>
-            pass*@
-                    <input id="add" type="button" value="create" />
-                </div>
+                          <div class="new">
+                              <input id="fio" value="Вася" />
+                              <select>
+                                  @foreach (var gr in Model.First().Groups)
+                                  {
+                                      <option>@gr</option>
+                                  }
+                              </select>
+                              @*pass*@
+                              <input id="pass" type="password" />
+            
+                              <input id="add" type="button" value="create" />
+                          </div>
             </body>
-        <script>
+        
+
+<script>
     $("#save").on("click", function (e) {
-        e.preventDefault();
 
         var curs = [];
-
-        //debugger;
+        
         $(".curator").each(function () {
             var fio = $(this).find("label").text();
             var number = $(this).find("select option:selected").text();
@@ -148,24 +113,22 @@
 
         $.ajax({
             type: 'POST',
-            url: "@Url.Action("Index", "Account")",
+            url: "@Url.Action("Save", "Account")",
             //dataType: JSON,
             data: {
                 curators: curs
             },
             success: function () {
-
             }
         });
+        alert("Сохранение прошло успешно");
     });
 
     $("#add").on("click", function (e) {
-        e.preventDefault();
 
-        var FIO = $(".new").find("input").val();
+        var FIO = $(".new").find("#fio").val();
         var Number = $(".new").find("select option:selected").text();
-        var Pass = $(".new").find("select option:selected").text();
-
+        var Pass = $(".new").find("#pass").val();
         $.ajax({
             type: 'POST',
             url: "@Url.Action("Add", "Account")",
@@ -175,10 +138,8 @@
                 pass: Pass
             }
         });
-            //.done(function () {
-        //    debugger;
+            
         window.location.href = '@Url.Action("Index")';
-            //});
     });
 
         </script>

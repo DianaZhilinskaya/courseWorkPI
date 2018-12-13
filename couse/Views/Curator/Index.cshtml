@@ -3,7 +3,7 @@
 @using couse;
 
 @{
-    ViewBag.Title = "Index";
+                ViewBag.Title = "Index";
 }
 
 <h2>Curator</h2>
@@ -11,15 +11,15 @@
 <style type="text/css">
 
     .outline {
-        border: 2px solid black;
-        padding: 0 0px;
+        border: solid black;
+        padding: 0px 0px 0px 0px;
         color: black;
         font-family: 'Times New Roman', Times, serif;
         align-content: center;
     }
 
     body {
-        background: url(image/4.png) no-repeat center content-box;
+        background: url(/image/4.png) no-repeat center content-box;
         /*linear-gradient(palegreen, white);*/
     }
 
@@ -44,9 +44,9 @@
         color: black;
     }
 
-    label{
-        font-family:'Times New Roman', Times, serif;
-        align-content:center;
+    label {
+        font-family: 'Times New Roman', Times, serif;
+        align-content: center;
     }
 </style>
 
@@ -56,31 +56,39 @@
 <br><br><br>
 
 
-        <body>
-            
-            <p><div class="outline"><label>@Session["login_user"] </label></div><div class="outline"><label>Group: @Model.First().group_students</label></div></p>
-            @foreach (Student stud in Model)
-            {
-                <div class="student">
-                    <div class="outline">
+<body>
 
-                        <label>@stud.FIO</label>
-                    </div>
+    <p>
+        <div class="outline">
+            <label>@Session["login_user"]</label>
+        </div>
+    <div class="outline">
+            <label>Group: @Model.First().group_students</label>
+        </div>
+    </p>
+    @foreach (Student stud in Model)
+    {
+        <div class="student">
+            <div class="outline">
 
-                </div>
-            }
-
-
-            <div>
+                <label>@stud.FIO</label>
             </div>
 
-            <h2>Excel Import</h2>
+        </div>
+    }
 
-            <form method="post" enctype="multipart/form-data">
-                <div>
-                    <input name="file" type="file" required />
-                    <button type="submit">Import</button>
-                </div>
-            </form>
+    <br><br><br>
+    <div>
+    </div>
 
-        </body>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <input name="file" type="file" required />
+            <button type="submit">Import</button>
+        </div>
+    </form>
+    <br>
+
+    @Html.ActionLink("Download", "Download", new { })
+
+</body>
